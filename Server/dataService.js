@@ -12,12 +12,12 @@ const registerUser=(name,email,password)=>{
                     message:"User already exists"
                 }
             }else{
-                const newUser=new dataBase.User({
-                    name,
-                    email,
-                    password
-                })
-                newUser.save();
+                    const newUser=new dataBase.User({
+                        name,
+                        email,
+                        password
+                    })
+                    newUser.save();
                 return{
                     status:true,
                     statusCode:200,
@@ -27,6 +27,7 @@ const registerUser=(name,email,password)=>{
         }
     )
 }
+//login user
 const loginUser=(email,password)=>{
     return dataBase.User.findOne({email,password},{_id:0,password:0}).then(
         (data)=>{
@@ -61,6 +62,36 @@ const getAllBooks=()=>{
                     status:false,
                     statusCode:401,
                     message:"Not found"
+                }
+            }
+        }
+    )
+}
+//add to favorites
+const addFavorite=(id,email,book,category,available,price,image,author)=>{
+    return dataBase.Favorite.findById({_id:id}).then(
+        (result)=>{
+            if(!result){
+                const newFav=new dataBase.Favorite({
+                    email,
+                    book,
+                    category,
+                    available,
+                    price,
+                    image,
+                    author
+                })
+                newFav.save();
+                return{
+                    status:true,
+                    statusCode:200,
+                    message:"Added succesfully",
+                }
+            }else{
+                return{
+                    status:false,
+                    statusCode:401,
+                    message:"Error handling favorites"
                 }
             }
         }
@@ -192,6 +223,7 @@ const updateBook=(id,book,category,available,price,image,author,year)=>{
 module.exports={
     registerUser,
     loginUser,
+    addFavorite,
     getallUser,
     deleteUser,
     getAllBooks,

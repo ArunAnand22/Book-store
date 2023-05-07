@@ -39,9 +39,35 @@ const Book=mongoose.model('Book',{
         type:String
     }    
 })
+//Favorite
+const Favorite=mongoose.model('Favorite',({
+    //schema creation
+    email:{
+        type:String
+    },
+    book:{
+        type:String
+    },
+    image:{
+        type:String
+    },
+    price:{
+        type:Number
+    },
+    category:{
+        type:String
+    },
+    available:{
+        type:String
+    },
+    author:{
+        type:String
+    }
+}))
 
 //export
 module.exports={
     User,
-    Book
+    Book,
+    Favorite
 }

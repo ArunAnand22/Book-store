@@ -16,7 +16,10 @@ mongoose.connect("mongodb://127.0.0.1:27017/Bookstore").then(()=>{
 
 //register user
 app.post('/user/register',(req,res)=>{
-    dataService.registerUser(req.body.name,req.body.email,req.body.password).then(
+    name=req.body.name;
+    email=req.body.email,
+    password=req.body.password
+    dataService.registerUser(name,email,password).then(
     (result)=>{
         res.status(result.statusCode).json(result)
     }
@@ -24,7 +27,9 @@ app.post('/user/register',(req,res)=>{
 })
 //login user
 app.post('/user/login',(req,res)=>{
-    dataService.loginUser(req.body.email,req.body.password).then(
+    dataService.loginUser(
+        req.body.email,
+        req.body.password).then(
         (result)=>{
             res.status(result.statusCode).json(result)
         }
@@ -34,6 +39,23 @@ app.post('/user/login',(req,res)=>{
 //get all books
 app.get('/user/allbooks',(req,res)=>{
     dataService.getAllBooks().then(
+        (result)=>{
+            res.status(result.statusCode).json(result)
+        }
+    )
+})
+//add to favorite
+app.post('/user/favorite-book/:id',(req,res)=>{
+    dataService.addFavorite(
+        req.params.id,
+        req.body.email,
+        req.body.book,
+        req.body.category,
+        req.body.available,
+        req.body.price,
+        req.body.image,
+        req.body.author,
+        req.body.year).then(
         (result)=>{
             res.status(result.statusCode).json(result)
         }
@@ -59,7 +81,14 @@ app.delete('/admin/book/delete/:id',(req,res)=>{
 })
 //add new book to db
 app.post('/admin/add-book',(req,res)=>{
-    dataService.addNewBook(req.body.book,req.body.category,req.body.available,req.body.price,req.body.image,req.body.author,req.body.year).then(
+    dataService.addNewBook(
+        req.body.book,
+        req.body.category,
+        req.body.available,
+        req.body.price,
+        req.body.image,
+        req.body.author,
+        req.body.year).then(
         (result)=>{
             res.status(result.statusCode).json(result)
         }
