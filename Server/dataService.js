@@ -97,6 +97,26 @@ const addFavorite=(id,email,book,category,available,price,image,author)=>{
         }
     )
 }
+//remove from favorite
+const removeFav=(id)=>{
+    return dataBase.Favorite.findByIdAndDelete({_id:id}).then(
+        (result)=>{
+            if(result){
+                return{
+                    status:true,
+                    statusCode:200,
+                    message:"Favorite removed successfully"
+                }
+            }else{
+                return{
+                    status:false,
+                    statusCode:401,
+                    message:"Item not found"
+                }
+            }
+        }
+    )
+}
 //---------------------------------------------------------------
 
 //admin side
@@ -224,6 +244,7 @@ module.exports={
     registerUser,
     loginUser,
     addFavorite,
+    removeFav,
     getallUser,
     deleteUser,
     getAllBooks,

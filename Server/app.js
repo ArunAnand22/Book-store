@@ -61,6 +61,14 @@ app.post('/user/favorite-book/:id',(req,res)=>{
         }
     )
 })
+//remove item from favorite
+app.delete('/user/fav-delete/:id',(req,res)=>{
+    dataService.removeFav(req.params.id).then(
+        (result)=>{
+            res.status(result.statusCode).json(result)
+        }
+    )
+})
 //-------------Admin Side-------------------
 //delete user by admin
 app.delete('/admin/delete/:id',(req,res)=>{
