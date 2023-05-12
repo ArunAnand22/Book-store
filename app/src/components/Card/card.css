@@ -1,0 +1,48 @@
+.card-main{
+    width: fit-content;
+    margin-bottom: 100px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    cursor: pointer;
+    margin: 70px;
+}
+a{
+    text-decoration: none;
+}
+.card-img{
+    width: 130px;
+    border-radius: 8px;
+}
+.card-img:hover{
+    scale: 1.2;
+    transition: 0.5s;
+}
+.card-body{
+    text-align: center;
+    padding-top: 10px;
+}
+.card-title{
+    font-weight: 500;
+    font-size: 20px;
+    color: #23b196;
+}
+.card-h3{
+    font-size: 14px;
+    font-weight: 300;
+    font-style: italic;
+    color: grey;
+}
+.card-author{
+    color: #23b196;
+    font-weight: bold;
+}
+
+@media screen and (max-width: 480px){
+    .card-main{
+        margin: 0px;
+    }
+    .card-body{
+        margin-bottom: 100px;
+    }
+}

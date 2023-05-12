@@ -1,0 +1,28 @@
+.adminHeader-main{
+    background-color: rgb(28, 204, 236);
+    width: 100%;
+}
+.adminHeader-section{
+    width: 90%;
+    margin: auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.adminHeader-img{
+    width: 100px;
+}
+.adminHeader-leftSection{
+    flex: 1;
+}
+.adminHeader-rightSection{
+    flex: 3;
+}
+.adminHeader-list{
+    list-style: none;
+    display: flex;
+    justify-content: space-around;
+    color: #fff;
+    font-size: 20px;
+    cursor: pointer;
+}

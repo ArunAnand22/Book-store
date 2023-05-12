@@ -8,7 +8,7 @@ const registerUser=(name,email,password)=>{
             if(data){
                 return{
                     status:false,
-                    statusCode:401,
+                    statusCode:400,
                     message:"User already exists"
                 }
             }else{
@@ -68,8 +68,8 @@ const getAllBooks=()=>{
     )
 }
 //add to favorites
-const addFavorite=(id,email,book,category,available,price,image,author)=>{
-    return dataBase.Favorite.findById({_id:id}).then(
+const addFavorite=(email,book,category,available,price,image,author)=>{
+    return dataBase.Favorite.findOne({book:book}).then(
         (result)=>{
             if(!result){
                 const newFav=new dataBase.Favorite({
@@ -91,7 +91,27 @@ const addFavorite=(id,email,book,category,available,price,image,author)=>{
                 return{
                     status:false,
                     statusCode:401,
-                    message:"Error handling favorites"
+                    message:"Already in list"
+                }
+            }
+        }
+    )
+}
+//get books from favorites
+const getFavorite=(email)=>{
+    return dataBase.Favorite.find({email:email}).then(
+        (result)=>{
+            if(result){
+                return{
+                    status:true,
+                    statusCode:200,
+                    result
+                }
+            }else{
+                return{
+                    status:false,
+                    statusCode:400,
+                    message:"Item not found"
                 }
             }
         }
@@ -106,6 +126,30 @@ const removeFav=(id)=>{
                     status:true,
                     statusCode:200,
                     message:"Favorite removed successfully"
+                }
+            }else{
+                return{
+                    status:false,
+                    statusCode:401,
+                    message:"Item not found"
+                }
+            }
+        }
+    )
+}
+//add to cart from user side
+// const addtoCart=()=>{
+//     dataBase.Cart.find()
+// }
+//get indivial book by id
+const getIndividualBook=(id)=>{
+    return dataBase.Book.findById({_id:id}).then(
+        (result)=>{
+            if(result){
+                return{
+                    status:true,
+                    statusCode:200,
+                    result:result
                 }
             }else{
                 return{
@@ -244,6 +288,8 @@ module.exports={
     registerUser,
     loginUser,
     addFavorite,
+    getFavorite,
+    getIndividualBook,
     removeFav,
     getallUser,
     deleteUser,

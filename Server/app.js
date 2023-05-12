@@ -16,10 +16,10 @@ mongoose.connect("mongodb://127.0.0.1:27017/Bookstore").then(()=>{
 
 //register user
 app.post('/user/register',(req,res)=>{
-    name=req.body.name;
-    email=req.body.email,
-    password=req.body.password
-    dataService.registerUser(name,email,password).then(
+    dataService.registerUser(
+        req.body.name,
+        req.body.email,
+        req.body.password).then(
     (result)=>{
         res.status(result.statusCode).json(result)
     }
@@ -44,10 +44,17 @@ app.get('/user/allbooks',(req,res)=>{
         }
     )
 })
+//get indivial book by id
+app.get('/user-book/:id',(req,res)=>{
+    dataService.getIndividualBook(req.params.id).then(
+        (result)=>{
+            res.status(result.statusCode).json(result)
+        }
+    )
+})
 //add to favorite
-app.post('/user/favorite-book/:id',(req,res)=>{
+app.post('/user/favorite-book',(req,res)=>{
     dataService.addFavorite(
-        req.params.id,
         req.body.email,
         req.body.book,
         req.body.category,
@@ -61,6 +68,14 @@ app.post('/user/favorite-book/:id',(req,res)=>{
         }
     )
 })
+//get item from favorite
+app.post('/user/favorites-books',(req,res)=>{
+    dataService.getFavorite(req.body.email).then(
+        (result)=>{
+            res.status(result.statusCode).json(result)
+        }
+    )
+})
 //remove item from favorite
 app.delete('/user/fav-delete/:id',(req,res)=>{
     dataService.removeFav(req.params.id).then(
@@ -69,7 +84,19 @@ app.delete('/user/fav-delete/:id',(req,res)=>{
         }
     )
 })
+//add to cart
+app.post('/user/cart-section',(req,res)=>{
+    
+})
 //-------------Admin Side-------------------
+//get all users
+app.get('/admin/usercount',(req,res)=>{
+    dataService.getallUser().then(
+        (result)=>{
+            res.status(result.statusCode).json(result)
+        }
+    )
+})
 //delete user by admin
 app.delete('/admin/delete/:id',(req,res)=>{
     dataService.deleteUser(req.params.id).then(

@@ -64,10 +64,33 @@ const Favorite=mongoose.model('Favorite',({
         type:String
     }
 }))
+//cart
+const Cart=mongoose.model('Cart',({
+    //schema model
+    email:{
+        type:String
+    },
+    book:{
+        type:String
+    },
+    image:{
+        type:String
+    },
+    price:{
+        type:Number
+    },
+    category:{
+        type:String
+    },
+    author:{
+        type:String
+    }
+}))
 
 //export
 module.exports={
     User,
     Book,
-    Favorite
+    Favorite,
+    Cart
 }

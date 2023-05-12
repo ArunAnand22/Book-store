@@ -1,0 +1,43 @@
+.dashboard-main{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.dashboard-usersCard,
+.dashboard-bookCard,
+.dashboard-salesCard{
+    background-color: red;
+    margin-top: 40px;
+    padding: 30px 50px;
+    border-radius: 8px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+.dashboard-usersCard{
+    background: linear-gradient(0deg, rgba(28,201,203,1) 0%, rgba(255,219,12,1) 100%);
+}
+.dashboard-bookCard{
+    background: linear-gradient(0deg, rgba(203,183,28,1) 0%, rgba(143,255,12,1) 100%)
+}
+.dashboard-salesCard{
+    background: linear-gradient(0deg, rgba(203,28,28,1) 0%, rgba(255,12,237,1) 100%);
+}
+.dashboard-bookIcon,
+.dashboard-moneyIcon,
+.dashboard-userIcon{
+    font-size: 28px;
+    color: #fff;
+}
+.dashboard-count{
+    font-size: 24px;
+    color: #fff;
+    font-weight: 400;
+}
+.dashboard-user{
+    font-size: 20px;
+    font-weight: bold;
+    color: white;
+}
